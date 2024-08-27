@@ -72,6 +72,6 @@ for gameday in gamedays:
             print(f'{home_score} - {away_score} [{home_team} - {away_team}]')
 
 games_matching_percent = round(100 * games_matching / games_total, 1)
-print()
+print('\n')
 print(line)
 print(f'Matching games: {games_matching} of {games_total} ({games_matching_percent}%)')
