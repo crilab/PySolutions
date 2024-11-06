@@ -1,28 +1,55 @@
-import calc
+import os
 
-def main():
-    h1 = ''
-    h2 = ''
-    h3 = ''
+h1 = ''
+h2 = ''
+h3 = ''
+
+while True:
+    os.system('clear')
+
+    print('----------------------------')
+    print('The Calculator'.center(28))
+    print('----------------------------')
+    print(h1.center(28))
+    print(h2.center(28))
+    print(h3.center(28))
+    print('----------------------------')
+    print(' add | Add two numbers')
+    print(' sub | Subtract two numbers')
+    print(' mul | Multiply two numbers')
+    print(' div | Divide two numbers')
+    print('----------------------------')
+
+    operation = input(' > ')
+
+    if operation not in ('add', 'sub', 'mul', 'div'):
+        input('ERROR: invalid operation')
+        continue
 
     while True:
-        calc.header(h1, h2, h3)
-        o = calc.get_operation()
-        a = calc.get_number('a')
-        b = calc.get_number('b')
+        try:
+            a = float(input(' a = '))
+            b = float(input(' b = '))
+            break
+        except ValueError:
+            print('ERROR: invalid float')
 
-        if o == '+':
-            c = a + b
-        elif o == '-':
-            c = a - b
-        elif o == '*':
-            c = a * b
-        elif o == '/':
+    if operation == 'add':
+        op = '+'
+        c = a + b
+    elif operation == 'sub':
+        op = '-'
+        c = a - b
+    elif operation == 'mul':
+        op = '*'
+        c = a * b
+    elif operation == 'div':
+        op = '/'
+        try:
             c = a / b
-        
-        h1 = h2
-        h2 = h3
-        h3 = f'{a} {o} {b} = {c}'
-
-if __name__ == '__main__':
-    main()
+        except ZeroDivisionError:
+            c = 'Infinity'
+    
+    h1 = h2
+    h2 = h3
+    h3 = f'{a} {op} {b} = {c}'
